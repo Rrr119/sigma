@@ -83,6 +83,34 @@ You can download the latest rule packages from the [release page](https://github
 
 * To integrate Sigma rules in your own toolchain or products use [pySigma](https://github.com/SigmaHQ/pySigma).
 
+## 🎯 ATT&CK Mapping and Coverage
+
+Sigma rules describe ATT&CK mappings with standard `attack.*` tags. The
+repository includes `sigma_attack`, a small offline toolkit that turns those
+tags into per-rule mappings, coverage reports, and ATT&CK Navigator layers
+without changing the rules or requiring a SIEM backend:
+
+```bash
+# Map rules to ATT&CK techniques and tactics.
+python -m sigma_attack map rules/windows/process_creation --format json
+
+# Generate a human-readable coverage report.
+python -m sigma_attack coverage rules --format markdown -o attack-coverage.md
+
+# Produce an ATT&CK Navigator layer compatible with existing converters.
+python -m sigma_attack navigator rules -o attack-layer.json
+
+# Validate ATT&CK tags against the bundled ATT&CK catalog.
+python -m sigma_attack validate rules
+```
+
+The mapper reads both string tags and pySigma `SigmaRuleTag` objects, and its
+Navigator output follows the same layer schema used by
+`sigma analyze attack`. See [documentation/attack-mapping.md](./documentation/attack-mapping.md)
+for the Python API, coverage definitions, and catalog refresh instructions.
+The current repository snapshot is summarized in
+[other/sigma_attack_coverage.md](./other/sigma_attack_coverage.md).
+
 ## 🚨 Reporting False Positives or New Rule Ideas
 
 If you find a false positive or would like to propose a new detection rule idea but do not have the time to create one, please create a new issue on the [GitHub repository](https://github.com/SigmaHQ/sigma/issues/new/choose) by selecting one of the available templates.

@@ -1,0 +1,356 @@
+{
+  "description": "Manually reviewed ATT&CK labels for 50 Sigma rules. Labels were checked against each rule's title, description, detection logic, and ATT&CK technique semantics.",
+  "attack_version": "20.1",
+  "rules": [
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_7zip_exfil_dmp_files.yml",
+      "title": "7Zip Compressing Dump Files",
+      "techniques": ["T1560.001"],
+      "tactics": ["collection"],
+      "note": "7-Zip archives a memory dump before collection/exfiltration."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_amsi_registry_tampering.yml",
+      "title": "Windows AMSI Related Registry Tampering Via CommandLine",
+      "techniques": ["T1685"],
+      "tactics": ["defense-impairment"],
+      "note": "Registry changes disable or modify AMSI protection."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_arcsoc_susp_child_process.yml",
+      "title": "Suspicious ArcSOC.exe Child Process",
+      "techniques": ["T1059", "T1203"],
+      "tactics": ["execution"],
+      "note": "Suspicious script/interpreter child process started by ArcSOC."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_adplus_memory_dump.yml",
+      "title": "Potential Adplus.EXE Abuse",
+      "techniques": ["T1003.001"],
+      "tactics": ["credential-access", "execution"],
+      "note": "Adplus creates a process memory dump that can contain LSASS credentials."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_attrib_hiding_files.yml",
+      "title": "Hiding Files with Attrib.exe",
+      "techniques": ["T1564.001"],
+      "tactics": ["stealth"],
+      "note": "Attrib sets hidden/system attributes to conceal files."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_auditpol_susp_execution.yml",
+      "title": "Audit Policy Tampering Via Auditpol",
+      "techniques": ["T1685.001"],
+      "tactics": ["defense-impairment"],
+      "note": "Auditpol changes or clears Windows audit policy."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_certutil_download.yml",
+      "title": "Suspicious Download Via Certutil.EXE",
+      "techniques": ["T1027", "T1105"],
+      "tactics": ["command-and-control", "stealth"],
+      "note": "Certutil downloads content and can encode/obfuscate it."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_cmd_ping_del_combined_execution.yml",
+      "title": "Suspicious Ping/Del Command Combination",
+      "techniques": ["T1070.004"],
+      "tactics": ["stealth"],
+      "note": "Del removes files, often after a timing delay from ping."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_hktl_mimikatz_command_line.yml",
+      "title": "HackTool - Mimikatz Execution",
+      "techniques": ["T1003.001", "T1003.002", "T1003.004", "T1003.005", "T1003.006"],
+      "tactics": ["credential-access"],
+      "note": "Mimikatz exposes LSASS, SAM, LSA, cached domain, and DCSync credential access."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_powershell_download_iex.yml",
+      "title": "PowerShell Download and Execution Cradles",
+      "techniques": ["T1059"],
+      "tactics": ["execution"],
+      "note": "PowerShell executes a download-and-run cradle."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_powershell_download_patterns.yml",
+      "title": "PowerShell Download Pattern",
+      "techniques": ["T1059.001"],
+      "tactics": ["execution"],
+      "note": "PowerShell command line contains download primitives."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_schtasks_creation.yml",
+      "title": "Scheduled Task Creation Via Schtasks.EXE",
+      "techniques": ["T1053.005"],
+      "tactics": ["execution", "persistence", "privilege-escalation"],
+      "note": "Schtasks creates a scheduled task for execution or persistence."
+    },
+    {
+      "path": "rules/windows/process_creation/proc_creation_win_wmic_recon_computersystem.yml",
+      "title": "Computer System Reconnaissance Via Wmic.EXE",
+      "techniques": ["T1047"],
+      "tactics": ["discovery", "execution"],
+      "note": "WMI is used to query host information via WMIC."
+    },
+    {
+      "path": "rules/windows/builtin/security/win_security_account_backdoor_dcsync_rights.yml",
+      "title": "Powerview Add-DomainObjectAcl DCSync AD Extend Right",
+      "techniques": ["T1098"],
+      "tactics": ["persistence", "privilege-escalation"],
+      "note": "ACL modification grants replication rights used for DCSync."
+    },
+    {
+      "path": "rules/windows/builtin/security/win_security_ad_replication_non_machine_account.yml",
+      "title": "Active Directory Replication from Non Machine Account - DcSync Indicator",
+      "techniques": ["T1003.006"],
+      "tactics": ["credential-access"],
+      "note": "Directory replication from a non-machine account indicates DCSync."
+    },
+    {
+      "path": "rules/windows/builtin/security/win_security_admin_share_access.yml",
+      "title": "Access To ADMIN$ Network Share",
+      "techniques": ["T1021.002"],
+      "tactics": ["lateral-movement"],
+      "note": "SMB/Windows Admin Shares are accessed remotely."
+    },
+    {
+      "path": "rules/windows/builtin/security/win_security_audit_log_cleared.yml",
+      "title": "Security Eventlog Cleared",
+      "techniques": ["T1685.005"],
+      "tactics": ["defense-impairment"],
+      "note": "The Security event log is cleared to remove evidence."
+    },
+    {
+      "path": "rules/windows/builtin/security/win_security_explicit_credential_local_logon.yml",
+      "title": "Potentially Suspicious Explicit Credential Local Logon",
+      "techniques": ["T1134", "T1134.003"],
+      "tactics": ["privilege-escalation", "stealth"],
+      "note": "Explicit credentials are used to create a logon token, including make-and-impersonate-token behavior."
+    },
+    {
+      "path": "rules/windows/registry/registry_set/registry_set_disable_windows_event_log_access.yml",
+      "title": "Windows Event Log Access Tampering Via Registry",
+      "techniques": ["T1112", "T1547.001"],
+      "tactics": ["defense-impairment", "persistence", "privilege-escalation"],
+      "note": "Registry modification tampers with event log access and can establish autostart persistence."
+    },
+    {
+      "path": "rules/windows/registry/registry_set/registry_set_susp_run_key_img_folder.yml",
+      "title": "New RUN Key Pointing to Suspicious Folder",
+      "techniques": ["T1547.001"],
+      "tactics": ["persistence", "privilege-escalation"],
+      "note": "A Run key autostart entry is created from a suspicious folder."
+    },
+    {
+      "path": "rules/windows/image_load/image_load_dll_comsvcs_load_renamed_version_by_rundll32.yml",
+      "title": "Suspicious Renamed Comsvcs DLL Loaded By Rundll32",
+      "techniques": ["T1003.001"],
+      "tactics": ["credential-access"],
+      "note": "A renamed comsvcs.dll is used through Rundll32 to dump LSASS memory."
+    },
+    {
+      "path": "rules/windows/driver_load/driver_load_win_vuln_drivers.yml",
+      "title": "Vulnerable Driver Load",
+      "techniques": ["T1068", "T1543.003"],
+      "tactics": ["persistence", "privilege-escalation"],
+      "note": "A vulnerable driver is loaded and can be used for privilege escalation or persistent kernel access."
+    },
+    {
+      "path": "rules/windows/dns_query/dns_query_win_mal_cobaltstrike.yml",
+      "title": "Suspicious Cobalt Strike DNS Beaconing - Sysmon",
+      "techniques": ["T1071.004"],
+      "tactics": ["command-and-control"],
+      "note": "DNS queries carry command-and-control traffic."
+    },
+    {
+      "path": "rules/windows/network_connection/net_connection_win_domain_ngrok.yml",
+      "title": "Process Initiated Network Connection To Ngrok Domain",
+      "techniques": ["T1102", "T1567", "T1572"],
+      "tactics": ["command-and-control", "exfiltration"],
+      "note": "Ngrok provides a web service tunnel that can relay C2 or exfiltration traffic."
+    },
+    {
+      "path": "rules/windows/file/file_event/file_event_win_hktl_crackmapexec_indicators.yml",
+      "title": "HackTool - CrackMapExec File Indicators",
+      "techniques": ["T1003.001"],
+      "tactics": ["credential-access"],
+      "note": "CrackMapExec file artifacts are associated with credential dumping."
+    },
+    {
+      "path": "rules/linux/process_creation/proc_creation_lnx_at_command.yml",
+      "title": "Scheduled Task/Job At",
+      "techniques": ["T1053.002"],
+      "tactics": ["execution", "persistence", "privilege-escalation"],
+      "note": "The at utility schedules a command or job."
+    },
+    {
+      "path": "rules/linux/process_creation/proc_creation_lnx_auditctl_clear_rules.yml",
+      "title": "Audit Rules Deleted Via Auditctl",
+      "techniques": ["T1685.004"],
+      "tactics": ["defense-impairment"],
+      "note": "Auditctl removes audit rules to impair logging."
+    },
+    {
+      "path": "rules/linux/process_creation/proc_creation_lnx_base64_execution.yml",
+      "title": "Linux Base64 Encoded Pipe to Shell",
+      "techniques": ["T1140"],
+      "tactics": ["stealth"],
+      "note": "Base64 content is decoded and piped to a shell."
+    },
+    {
+      "path": "rules/linux/process_creation/proc_creation_lnx_clear_logs.yml",
+      "title": "Linux Logs Clearing Attempts",
+      "techniques": ["T1685.006"],
+      "tactics": ["defense-impairment"],
+      "note": "System and authentication logs are deleted."
+    },
+    {
+      "path": "rules/linux/process_creation/proc_creation_lnx_crontab_enumeration.yml",
+      "title": "Crontab Enumeration",
+      "techniques": ["T1007"],
+      "tactics": ["discovery"],
+      "note": "Cron and service configuration are enumerated."
+    },
+    {
+      "path": "rules/macos/process_creation/proc_creation_macos_applescript.yml",
+      "title": "MacOS Scripting Interpreter AppleScript",
+      "techniques": ["T1059.002"],
+      "tactics": ["execution"],
+      "note": "AppleScript executes commands through osascript."
+    },
+    {
+      "path": "rules/macos/process_creation/proc_creation_macos_create_hidden_account.yml",
+      "title": "Hidden User Creation",
+      "techniques": ["T1564.002"],
+      "tactics": ["stealth"],
+      "note": "A local account is created with a hidden identity attribute."
+    },
+    {
+      "path": "rules/macos/process_creation/proc_creation_macos_creds_from_keychain.yml",
+      "title": "Credentials from Password Stores - Keychain",
+      "techniques": ["T1555.001"],
+      "tactics": ["credential-access"],
+      "note": "Credentials are read from the macOS Keychain."
+    },
+    {
+      "path": "rules/macos/process_creation/proc_creation_macos_disable_security_tools.yml",
+      "title": "Disable Security Tools",
+      "techniques": ["T1685"],
+      "tactics": ["defense-impairment"],
+      "note": "Security tooling is stopped or disabled."
+    },
+    {
+      "path": "rules/cloud/aws/cloudtrail/aws_cloudtrail_console_login_failed_authentication.yml",
+      "title": "AWS ConsoleLogin Failed Authentication",
+      "techniques": ["T1110"],
+      "tactics": ["credential-access"],
+      "note": "Repeated failed console authentication indicates brute force or password guessing."
+    },
+    {
+      "path": "rules/cloud/aws/cloudtrail/aws_cloudtrail_disable_logging.yml",
+      "title": "AWS CloudTrail Important Change",
+      "techniques": ["T1685.002"],
+      "tactics": ["defense-impairment"],
+      "note": "CloudTrail logging is disabled or modified."
+    },
+    {
+      "path": "rules/cloud/aws/cloudtrail/aws_cloudtrail_imds_malicious_usage.yml",
+      "title": "Malicious Usage Of IMDS Credentials Outside Of AWS Infrastructure",
+      "techniques": ["T1078", "T1078.002"],
+      "tactics": ["initial-access", "persistence", "privilege-escalation", "stealth"],
+      "note": "Valid cloud instance credentials obtained from IMDS are used outside AWS."
+    },
+    {
+      "path": "rules/cloud/azure/signin_logs/azure_ad_azurehound_discovery.yml",
+      "title": "Discovery Using AzureHound",
+      "techniques": ["T1087.004", "T1526"],
+      "tactics": ["discovery"],
+      "note": "AzureHound enumerates cloud accounts and cloud service discovery."
+    },
+    {
+      "path": "rules/cloud/azure/signin_logs/azure_ad_suspicious_signin_bypassing_mfa.yml",
+      "title": "Potential MFA Bypass Using Legacy Client Authentication",
+      "techniques": ["T1078.004", "T1110"],
+      "tactics": ["credential-access", "initial-access", "persistence", "privilege-escalation", "stealth"],
+      "note": "Legacy authentication attempts bypass MFA while using or guessing cloud accounts."
+    },
+    {
+      "path": "rules/network/zeek/zeek_dce_rpc_potential_petit_potam_efs_rpc_call.yml",
+      "title": "Potential PetitPotam Attack Via EFS RPC Calls",
+      "techniques": ["T1187", "T1557.001"],
+      "tactics": ["collection", "credential-access"],
+      "note": "EFS RPC coercion captures authentication traffic for credential relay."
+    },
+    {
+      "path": "rules/network/zeek/zeek_dns_torproxy.yml",
+      "title": "DNS TOR Proxies",
+      "techniques": ["T1048"],
+      "tactics": ["exfiltration"],
+      "note": "DNS traffic to Tor proxy infrastructure can carry exfiltration."
+    },
+    {
+      "path": "rules/network/zeek/zeek_http_executable_download_from_webdav.yml",
+      "title": "Executable from Webdav",
+      "techniques": ["T1105"],
+      "tactics": ["command-and-control"],
+      "note": "An executable is transferred from WebDAV."
+    },
+    {
+      "path": "rules/network/zeek/zeek_smb_converted_win_atsvc_task.yml",
+      "title": "Remote Task Creation via ATSVC Named Pipe - Zeek",
+      "techniques": ["T1053.002"],
+      "tactics": ["execution", "lateral-movement", "persistence", "privilege-escalation"],
+      "note": "A remote scheduled task is created through the ATSVC named pipe."
+    },
+    {
+      "path": "rules/identity/okta/okta_fastpass_phishing_detection.yml",
+      "title": "Okta FastPass Phishing Detection",
+      "techniques": ["T1566"],
+      "tactics": ["initial-access"],
+      "note": "A phishing attempt targets Okta FastPass authentication."
+    },
+    {
+      "path": "rules/identity/okta/okta_admin_role_assigned_to_user_or_group.yml",
+      "title": "Okta Admin Role Assigned to an User or Group",
+      "techniques": ["T1098.003"],
+      "tactics": ["persistence", "privilege-escalation"],
+      "note": "An additional cloud role is assigned to an Okta principal."
+    },
+    {
+      "path": "rules/application/github/audit/github_new_org_member.yml",
+      "title": "New Github Organization Member Added",
+      "techniques": ["T1136.003"],
+      "tactics": ["persistence"],
+      "note": "A new cloud account/member is added to the organization."
+    },
+    {
+      "path": "rules/application/github/audit/github_push_protection_bypass_detected.yml",
+      "title": "Github Push Protection Bypass Detected",
+      "techniques": ["T1685"],
+      "tactics": ["defense-impairment"],
+      "note": "A repository security control is bypassed."
+    },
+    {
+      "path": "rules/application/github/audit/github_repo_or_org_transferred.yml",
+      "title": "Github Repository/Organization Transferred",
+      "techniques": ["T1020", "T1537"],
+      "tactics": ["exfiltration", "persistence"],
+      "note": "Repository or organization ownership is transferred to another account."
+    },
+    {
+      "path": "rules/application/bitbucket/audit/bitbucket_audit_global_ssh_settings_change_detected.yml",
+      "title": "Bitbucket Global SSH Settings Changed",
+      "techniques": ["T1021.004", "T1685"],
+      "tactics": ["defense-impairment", "lateral-movement"],
+      "note": "SSH access settings are modified, affecting remote access and security controls."
+    },
+    {
+      "path": "rules/application/rpc_firewall/rpc_firewall_remote_dcom_or_wmi.yml",
+      "title": "Remote DCOM/WMI Lateral Movement",
+      "techniques": ["T1021.003", "T1047"],
+      "tactics": ["execution", "lateral-movement"],
+      "note": "Remote DCOM/WMI RPC traffic is used for lateral execution."
+    }
+  ]
+}

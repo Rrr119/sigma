@@ -32,19 +32,25 @@ git checkout -b your-feature-branch
    python tests/test_rules.py
    ```
 
-   3.3. **Sigma CLI validation** - runs schema and validation checks using Sigma CLI. Run this if you have the [sigma-cli](https://github.com/SigmaHQ/sigma-cli) and [pySigma-validators-sigmahq](https://github.com/SigmaHQ/pySigma-validators) Python packages installed:
+   3.3. **`test_attack_mapping.py`** - checks automatic ATT&CK mapping, coverage reports, and converter compatibility:
+
+   ```bash
+   python tests/test_attack_mapping.py
+   ```
+
+   3.4. **Sigma CLI validation** - runs schema and validation checks using Sigma CLI. Run this if you have the [sigma-cli](https://github.com/SigmaHQ/sigma-cli) and [pySigma-validators-sigmahq](https://github.com/SigmaHQ/pySigma-validators) Python packages installed:
 
    ```bash
    sigma check --fail-on-error --fail-on-issues --validation-config tests/sigma_cli_conf.yml rules/ rules-emerging-threats/ rules-threat-hunting/ rules-compliance/
    ```
 
-   3.4. **Baseline FP check** *(optional, Windows rules only)* - downloads clean Windows EVTX baseline logs and runs your rules against them to surface false positives. Requires `jq`, `wget`, and `tar`:
+   3.5. **Baseline FP check** *(optional, Windows rules only)* - downloads clean Windows EVTX baseline logs and runs your rules against them to surface false positives. Requires `jq`, `wget`, and `tar`:
 
    ```bash
    bash tests/check-baseline-local.sh
    ```
 
-   3.5. **Regression tests** *(optional, only if you added regression test files to your rule)* - rules with regression test can include a `regression_tests_path` field pointing to EVTX-based test data. To validate the file structure and mappings without any extra tooling:
+   3.6. **Regression tests** *(optional, only if you added regression test files to your rule)* - rules with regression test can include a `regression_tests_path` field pointing to EVTX-based test data. To validate the file structure and mappings without any extra tooling:
 
    ```bash
    python tests/regression_tests_runner.py \

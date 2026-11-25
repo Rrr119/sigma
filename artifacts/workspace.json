@@ -1,0 +1,17 @@
+{
+  "root": "/home/dev/feedback/uid36818",
+  "B": "/home/dev/feedback/uid36818",
+  "sha": "6e03bc5e1e04cd582870adc942b7fd2f682060fa",
+  "wslDistro": "Ubuntu-26.04",
+  "source": {
+    "owner": "SigmaHQ",
+    "repo": "sigma",
+    "sha": "6e03bc5e1e04cd582870adc942b7fd2f682060fa"
+  },
+  "fork": {
+    "owner": "Rrr119",
+    "repo": "sigma",
+    "cloneUrl": "https://github.com/Rrr119/sigma.git"
+  },
+  "at": "2026-11-25T00:04:23.114Z"
+}
